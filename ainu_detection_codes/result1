@@ -1,0 +1,69 @@
+# アイヌ語Code-switching識別結果1
+
+# モデル1
+
+課題で作ったRF分類機に、文のtokenを1つずつ通して、その文に1つでもアイヌ以外と識別されたtokenが存在していたらその文を、純粋なアイヌ語の文とは見做さない。
+
+## アイヌ語しか入っていないテキストファイルを通した時の結果
+
+=== Summary ===
+input_path: ainu_new_corpora_5_only_ainu.txt
+model_dir: .
+target_label: ainu
+total_lines: 7545
+ainu_only_lines: 6034
+not_ainu_lines: 1511
+csv_path: only_ainu_result_classified.csv
+jsonl_path: only_ainu_result_classified.jsonl
+ainu_only_txt: only_ainu_result_ainu_only.txt
+not_ainu_txt: only_ainu_result_not_ainu.txt
+
+## 混ざったやつしか入っていないテキストファイルを通した時の結果
+
+=== Summary ===
+input_path: ainu_new_corpora_7_only_mixed_romanized.txt
+model_dir: .
+target_label: ainu
+total_lines: 45
+ainu_only_lines: 1
+not_ainu_lines: 44
+csv_path: mixed_result_classified.csv
+jsonl_path: mixed_result_classified.jsonl
+ainu_only_txt: mixed_result_ainu_only.txt
+not_ainu_txt: mixed_result_not_ainu.txt
+
+# モデル2
+
+課題で作ったRF分類機に、文の連続する複数のtokenをまとめてn-gramとして通して、その文に1つでもアイヌ以外と識別されたn-gramが存在していたらその文を、純粋なアイヌ語の文とは見做さない
+
+## アイヌ語しか入っていないテキストファイルを通した時の結果
+
+=== Summary ===
+input_path: ainu_new_corpora_5_only_ainu.txt
+model_dir: .
+target_label: ainu
+ngram_size: 2
+total_lines: 7545
+ainu_only_lines: 7500
+not_ainu_lines: 45
+csv_path: only_ainu_ng2_result_classified.csv
+jsonl_path: only_ainu_ng2_result_classified.jsonl
+ainu_only_txt: only_ainu_ng2_result_ainu_only.txt
+not_ainu_txt: only_ainu_ng2_result_not_ainu.txt
+
+## 混ざったやつしか入っていないテキストファイルを通した時の結果
+
+=== Summary ===
+input_path: ainu_new_corpora_7_only_mixed_romanized.txt
+model_dir: .
+target_label: ainu
+ngram_size: 2
+total_lines: 45
+ainu_only_lines: 7
+not_ainu_lines: 38
+csv_path: mixed_ng2_result_classified.csv
+jsonl_path: mixed_ng2_result_classified.jsonl
+ainu_only_txt: mixed_ng2_result_ainu_only.txt
+not_ainu_txt: mixed_ng2_result_not_ainu.txt
+
+※n-gramサイズを3にしたら、もっとダメだった（混ざったやつしか入れてない時）
